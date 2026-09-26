@@ -30,12 +30,13 @@ watch(() => route.params.id, load)
     <p v-if="err" style="color:#b00020">{{ err }}</p>
     <section v-if="job" style="margin:16px 0; padding:12px; border:1px solid #ccc;">
       <h3>任务详情 #{{ job.id }}</h3>
-      <p>灯种：{{ job.lamp }}</p>
+      <p>灯种（随单冻结称呼）：{{ job.lamp }}</p>
       <p>标称 nm：{{ job.nominal_nm }}</p>
       <p>实测 nm：{{ job.measured_nm }}</p>
-      <p>状态：{{ job.status }}</p>
+      <p>状态：{{ job.status === 'pending' ? '待处理' : job.status === 'done' ? '已完成' : job.status }}</p>
       <p>结论：{{ job.verdict }}</p>
       <p>理由：{{ job.reason }}</p>
+      <p style="color:#666;font-size:12px;">该称呼已随本单落盘冻结，灯种牌事后摘牌不影响本单显示。</p>
     </section>
   </div>
 </template>
